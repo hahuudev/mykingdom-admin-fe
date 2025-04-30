@@ -1,4 +1,4 @@
-import { fontMetropolis, fontMono, fontOrbitron, fontSans, openSans } from '@/config/fonts';
+import { fontOrbitron, fontPoppins, fontSans, openSans } from '@/config/fonts';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/libs/common';
 import type { Metadata, Viewport } from 'next';
@@ -59,12 +59,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body
         cz-shortcut-listen="true"
         className={cn(
-          'min-h-screen bg-background font-metropolis antialiased',
+          'min-h-screen bg-background font-poppins antialiased',
           openSans.variable,
           fontSans.variable,
-          fontMono.variable,
-          fontOrbitron.variable,
-          fontMetropolis.variable
+          fontPoppins.variable,
+          fontOrbitron.variable
         )}
       >
         <Providers>

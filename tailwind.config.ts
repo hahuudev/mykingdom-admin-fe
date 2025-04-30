@@ -19,7 +19,7 @@ const config: Config = {
         serif: ['var(--font-serif)', ...fontFamily.serif],
         openSans: ['var(--font-open-sans)'],
         orbitron: ['var(--font-orbitron)'],
-        metropolis: ['var(--font-metropolis)'],
+        poppins: ['var(--font-poppins)'],
       },
       spacing: {
         17: '68px',
@@ -84,8 +84,16 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        table: {
+          'header-bg': '#EDEDED',
+          'header-text': '#666666',
+          'row-hover': '#F0F0F0',
+          'row-dragging': '#a8d68f',
+          'row-highlight': '#F9F9F9',
+          'footer-bg': '#bcd6ae',
+        },
         primary: {
-          50:  '#fff1f3',
+          50: '#fff1f3',
           100: '#ffe0e5',
           200: '#ffc6cf',
           300: '#ff9ead',

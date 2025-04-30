@@ -43,7 +43,6 @@
     --primary-900: #871526;
     --primary-950: #4a050f;
 
-
     /* Secondary */
     --secondary-50: #fbf7f1;
     --secondary-100: #f7ebdd;
@@ -117,7 +116,6 @@
     --red-damask-800: #8a3222;
     --red-damask-900: #702b1e;
   }
-
 }
 
 @layer base {

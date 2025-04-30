@@ -1,0 +1,38 @@
+import type { ITableColumn } from '@/components/ui/table';
+import { HStack } from '@/components/utilities';
+import Image from 'next/image';
+
+export const COLUMNS: ITableColumn[] = [
+  { title: 'ID', key: '_id', align: 'left', className: 'w-[250px]' },
+  {
+    title: 'Name',
+    key: 'name',
+    align: 'left',
+  },
+  {
+    title: 'Description',
+    key: 'description',
+    align: 'left',
+  },
+  {
+    title: 'Image',
+    key: 'updated_by',
+    align: 'center',
+    getCell: ({ row }) => (
+      <HStack pos="center">
+        <Image src={row?.image || ''} alt="image" width={80} height={80} className="rounded" />
+      </HStack>
+    ),
+  },
+  {
+    title: 'Created At',
+    key: 'createdAt',
+    align: 'left',
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    align: 'center',
+    getCell: ({ value }) => <>hi</>,
+  },
+];

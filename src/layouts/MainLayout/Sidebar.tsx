@@ -19,7 +19,7 @@ import { sidebars } from './libs/consts';
 
 const Sidebar = () => {
   const router = useRouter();
-  const pathname = usePathname()
+  const pathname = usePathname();
   const queryClient = useQueryClient();
 
   const { openSideBar, toggleSidebar, setOpenSideBar } = useAppStore();
@@ -119,7 +119,12 @@ const Sidebar = () => {
             </HStack>
           </Link>
 
-          <HStack spacing={20} noWrap className="cursor-pointer px-8 py-4 text-grey-100 text-sm hover:bg-primary-300" onClick={handleLogout}>
+          <HStack
+            spacing={20}
+            noWrap
+            className="cursor-pointer px-8 py-4 text-grey-100 text-sm hover:bg-primary-300"
+            onClick={handleLogout}
+          >
             <Icons.logout />
             <Show when={openSideBar === 'SHOW'}>
               <span className="font-medium">Logout Account</span>

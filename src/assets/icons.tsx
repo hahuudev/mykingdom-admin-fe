@@ -39,6 +39,7 @@ import wallet from './svg/wallet.svg';
 import xCircle from './svg/x-circle.svg';
 import X from './svg/x.svg';
 import xlsx from './svg/xlsx.svg';
+import { Loader2 } from 'lucide-react';
 
 const IconList = {
   home,
@@ -80,6 +81,7 @@ const IconList = {
   calendar,
   xCircle,
   wallet,
+  spinner: Loader2,
 };
 
 type SVGAttributes = Partial<SVGProps<SVGSVGElement>>;
