@@ -20,12 +20,12 @@ import { type AuthSchema, authSchema } from './libs/validators';
 
 const LoginPage = () => {
   const router = useRouter();
-  const { setUser, setIsWalletConnected } = useUserStore();
+  const { setUser } = useUserStore();
 
   const form = useForm<AuthSchema>({
     resolver: zodResolver(authSchema),
     defaultValues: {
-      user_info: '',
+      identifier: '',
       password: '',
     },
   });
@@ -34,10 +34,10 @@ const LoginPage = () => {
 
   const handleSubmit: SubmitHandler<AuthSchema> = async (formData) => {
     loginCredential(formData, {
-      onSuccess: ({ access_token, refresh_token, access_token_ttl, refresh_token_ttl, user }) => {
-        setCookie('access_token', access_token, { maxAge: access_token_ttl * 60 });
-        setCookie('refresh_token', refresh_token, {
-          maxAge: refresh_token_ttl * 60,
+      onSuccess: ({ user, accessToken, refreshToken, accessTokenTtl, refreshTokenTtl }) => {
+        setCookie('access_token', accessToken, { maxAge: accessTokenTtl * 60 });
+        setCookie('refresh_token', refreshToken, {
+          maxAge: refreshTokenTtl * 60,
         });
         setUser(user);
         router.replace(ROUTER.HOME);
@@ -67,7 +67,7 @@ const LoginPage = () => {
               required
               fullWidth
               control={form.control}
-              name="user_info"
+              name="identifier"
               label="Username"
               placeholder="Enter your username"
             />

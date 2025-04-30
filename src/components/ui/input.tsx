@@ -17,7 +17,7 @@ export const inputVariants = cva(
     variants: {
       variant: {
         default:
-          'border shadow-[0px_1px_2px_0px_#1018280D] bg-[#FAFAFA26] border-[#FFFFFF26] text-primary-700 placeholder:text-[#8A513659]',
+          'border shadow-[0px_1px_2px_0px_#1018280D] bg-[#FAFAFA26] border-[#FFFFFF26] placeholder:text-[#8A513659]',
       },
       inputSize: {
         sm: 'h-11 px-3 py-2 text-sm rounded-sm file:text-sm file:font-medium ',

@@ -12,12 +12,14 @@ import { cn } from '@/libs/common';
 import { ROUTER } from '@/libs/router';
 import { useAppStore } from '@/stores/AppStore';
 import { useUserStore } from '@/stores/UserStore';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { sidebars } from './libs/consts';
 
 const Sidebar = () => {
   const router = useRouter();
+  const pathname = usePathname()
   const queryClient = useQueryClient();
 
   const { openSideBar, toggleSidebar, setOpenSideBar } = useAppStore();
@@ -45,7 +47,7 @@ const Sidebar = () => {
   return (
     <VStack
       spacing={0}
-      className={cn('0, 0, 0.10)] fixed top-0 bottom-0 left-0 z-50 border-r border-r-[rgba(0, bg-grey-600 transition-all duration-300', {
+      className={cn('fixed top-0 bottom-0 left-0 z-50 border-r bg-[#333333] transition-all duration-300', {
         'w-64': openSideBar === 'SHOW',
         'w-[92px]': openSideBar === 'ZOOM-OUT',
         'w-6': openSideBar === 'HIDDEN',
@@ -54,7 +56,7 @@ const Sidebar = () => {
       <Show when={openSideBar !== 'HIDDEN'}>
         <Link href="/">
           <HStack pos="center" className={cn('py-8', openSideBar ? 'px-4' : 'px-0')} noWrap>
-            <Icons.logo />
+            <Image src="/images/logo.png" alt="logo" width={200} height={60} />
           </HStack>
         </Link>
       </Show>
@@ -69,7 +71,7 @@ const Sidebar = () => {
 
       <Show when={openSideBar !== 'HIDDEN'}>
         <div className="scrollbar-transparent scrollbar-1 flex-1 overflow-y-auto">
-          <div className={cn('pb-2 font-medium text-sm text-white', !openSideBar ? 'text-center' : 'ml-7')}>MAIN</div>
+          <div className={cn('pb-4 font-medium text-sm text-white', !openSideBar ? 'text-center' : 'ml-7')}>MAIN</div>
 
           <VStack className="mb-6" spacing={8}>
             {sidebars.map((sidebar, index) => {
@@ -89,9 +91,11 @@ const Sidebar = () => {
                     spacing={20}
                     pos={!openSideBar ? 'center' : null}
                     noWrap
-                    className={cn('px-8 py-4 font-medium text-grey-100 hover:bg-[#739F60]')}
+                    className={cn('px-8 py-4 font-medium text-white hover:bg-primary-300', {
+                      'bg-primary-500': pathname === sidebar.link,
+                    })}
                   >
-                    {/* {router.pathname === sidebar.link && sidebar?.iconActive ? sidebar.iconActive : sidebar.icon} */}
+                    {pathname === sidebar.link && sidebar?.iconActive ? sidebar?.iconActive : sidebar.icon}
                     <Show when={openSideBar === 'SHOW'}>
                       <span className="mt-[1px] text-sm">{sidebar.title}</span>
                     </Show>
@@ -115,7 +119,7 @@ const Sidebar = () => {
             </HStack>
           </Link>
 
-          <HStack spacing={20} noWrap className="cursor-pointer px-8 py-4 text-grey-100 text-sm hover:bg-[#6AA65B]" onClick={handleLogout}>
+          <HStack spacing={20} noWrap className="cursor-pointer px-8 py-4 text-grey-100 text-sm hover:bg-primary-300" onClick={handleLogout}>
             <Icons.logout />
             <Show when={openSideBar === 'SHOW'}>
               <span className="font-medium">Logout Account</span>

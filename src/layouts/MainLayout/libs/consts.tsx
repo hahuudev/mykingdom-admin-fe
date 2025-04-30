@@ -7,7 +7,13 @@ export const MENU_NAVS = [
 
 import { Icons } from '@/assets/icons';
 
-export const sidebars = [
+export const sidebars: {
+  iconActive?: React.ReactNode;
+  icon: React.ReactNode;
+  title: string;
+  link: string;
+  line?: boolean;
+}[] = [
   {
     icon: <Icons.home />,
     title: 'Dashboard',
@@ -18,13 +24,21 @@ export const sidebars = [
   // {
   //   line: true,
   // },
-  // {
-  //   icon: <Icons.consortium />,
-  //   iconActive: <Icons.consortiumActive />,
-  //   title: 'Consortium',
-  //   link: ROUTE.CONSORTIUM,
-  //   access: [IPermissions['SUPER-ADMIN_ADMIN'], IPermissions.ADMIN_ADMIN, IPermissions['GLOBAL-SUPER-ADMIN_ADMIN']],
-  // },
+  {
+    icon: <Icons.home />,
+    title: 'Categories',
+    link: ROUTER.CATEGORY_MANAGEMENT,
+  },
+  {
+    icon: <Icons.home />,
+    title: 'Brand Management',
+    link: ROUTER.BRAND_MANAGEMENT,
+  },
+  {
+    icon: <Icons.home />,
+    title: 'Product Management',
+    link: ROUTER.PRODUCT_MANAGEMENT,
+  },
   // {
   //   icon: <Icons.mbPage />,
   //   title: 'M & B',

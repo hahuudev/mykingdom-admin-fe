@@ -17,7 +17,6 @@ export const useUserLogin = () => {
       // deleteCookie('access_token');
       // deleteCookie('refresh_token');
       // logout();
-      // if (disconnect) disconnect();
     },
     enabled: Boolean(getCookie('access_token')),
   });

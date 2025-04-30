@@ -7,7 +7,7 @@ import type { ILoginResponse, IUploadAvatarResponse, IUser, IWalletConnect } fro
 
 export const loginRequest = async (formData: AuthSchema): Promise<ILoginResponse> => {
   const { data } = await client({
-    url: '/api/admin/sign-in',
+    url: '/api/admin/auth/signin',
     method: 'POST',
     data: formData,
   });
@@ -46,7 +46,7 @@ export const editAccount = async (formData: Omit<EditAccountSchema, 'wallet_addr
 
 export const getUserLogin = async (): Promise<IUser> => {
   const { data } = await client({
-    url: '/api/admin/info',
+    url: '/api/admin/auth/me',
     method: 'GET',
   });
 

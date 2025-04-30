@@ -1,10 +1,13 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect } from 'react';
 
 import { useAppStore } from '@/stores/AppStore';
 import type { FCC } from '@/types';
 
 import { HStack } from '@/components/utilities';
+import { useUserLogin } from '@/hooks/useUserLogin';
 import { cn } from '@/libs/common';
+import { ROUTER } from '@/libs/router';
+import { useRouter } from 'next/navigation';
 import Header from './Header';
 // import Footer from './Footer';
 import Sidebar from './Sidebar';
@@ -15,6 +18,14 @@ interface Props {
 
 const MainLayout: FCC<Props> = ({ children }) => {
   const { openSideBar } = useAppStore();
+  const { isLoggedIn, isFetching } = useUserLogin();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoggedIn && !isFetching) router.replace(ROUTER.SIGN_IN);
+  }, [isLoggedIn, isFetching]);
+
+  if (!isLoggedIn && !isFetching) return <></>;
 
   return (
     <div className="overflow-clip">
