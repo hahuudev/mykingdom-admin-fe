@@ -3,6 +3,7 @@ import { siteConfig } from '@/config/site';
 import { cn } from '@/libs/common';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import 'react-quill-new/dist/quill.snow.css';
 import Providers from './providers';
 
 export const metadata: Metadata = {

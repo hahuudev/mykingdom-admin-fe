@@ -1,37 +1,51 @@
 import React, { useMemo } from 'react';
-import Select, { type Props as StateManagerProps } from 'react-select';
+import type { Props as StateManagerProps } from 'react-select';
+import Select from 'react-select';
 
 interface IData {
-  label: React.ReactNode;
+  label: string;
   value: string;
   image?: string;
   group?: string;
 }
 
-export type SelectCustomProps = {
+export type SelectMultiCustomProps = {
+  value?: string[];
   height?: string | number;
   data?: IData[];
-  onChange?: (data: IData) => void;
-  onChangeValue?: (value: string) => void;
+  onChange?: (data: IData[]) => void;
+  onValueChange?: (value: string[]) => void;
   isError?: boolean;
-} & Omit<StateManagerProps, 'options' | 'onChange'>;
+  maxMenuHeight?: number;
+  placeholder?: string;
+} & Omit<StateManagerProps, 'options' | 'onChange' | 'value' | 'placeholder'>;
 
-const SelectCustom = ({ isError, value, defaultValue, onChangeValue, onChange, data = [], maxMenuHeight, ...props }: SelectCustomProps) => {
+const SelectMultiCustom = ({
+  value,
+  defaultValue,
+  onValueChange,
+  onChange,
+  data = [],
+  isError,
+  maxMenuHeight,
+  ...props
+}: SelectMultiCustomProps) => {
   const _value: any = useMemo(() => {
-    if (!value || !data) return null;
+    if (!value || !data) return [];
     // eslint-disable-next-line consistent-return
-    return data.find((x) => x.value === value) || null;
+    return data?.filter((item) => value.includes(item.value));
   }, [value, data]);
 
-  const _defaultValue: any = useMemo(() => {
-    if (!defaultValue || !data) return null;
-    // eslint-disable-next-line consistent-return
-    return data.find((x) => x.value === defaultValue) || null;
-  }, [defaultValue, data]);
+  // const _defaultValue: any = useMemo(() => {
+  //   if (!defaultValue || !data) return undefined;
+  //   // eslint-disable-next-line consistent-return
+  //   return data.find((x) => x.value === defaultValue) || undefined;
+  // }, [defaultValue, data]);
 
   return (
     <Select
       openMenuOnClick
+      isMulti
       styles={{
         control: (baseStyles, state) => ({
           ...baseStyles,
@@ -85,12 +99,11 @@ const SelectCustom = ({ isError, value, defaultValue, onChangeValue, onChange, d
       {...props}
       options={data}
       value={_value}
-      defaultValue={_defaultValue}
       onChange={(e: any) => {
         onChange?.(e);
-        onChangeValue?.(e?.value || '');
+        onValueChange?.(e.map((x: IData) => x.value) || []);
       }}
     />
   );
 };
-export default SelectCustom;
+export default SelectMultiCustom;

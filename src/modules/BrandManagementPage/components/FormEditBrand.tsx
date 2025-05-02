@@ -1,5 +1,5 @@
-import { useCategoryByIdQuery } from '@/api/category/queries';
-import { updateCategory } from '@/api/category/requests';
+import { useBrandByIdQuery } from '@/api/brand/queries';
+import { updateBrand } from '@/api/brand/requests';
 import { Icons } from '@/assets/icons';
 import H3 from '@/components/text/H3';
 import { Button } from '@/components/ui/button';
@@ -24,8 +24,8 @@ type Props = {
 const FormEditBrand = ({ refetch, _id }: Props) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-  const { mutate, isLoading } = useMutation(updateCategory);
-  useCategoryByIdQuery({
+  const { mutate, isLoading } = useMutation(updateBrand);
+  useBrandByIdQuery({
     variables: String(_id),
     enabled: Boolean(_id && isOpenModal),
     onSuccess: (data) => {

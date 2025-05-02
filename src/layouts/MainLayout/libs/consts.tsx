@@ -1,17 +1,15 @@
+'use client';
+
 import { ROUTER } from '@/libs/router';
 
-export const MENU_NAVS = [
-  { title: 'Agents Dashboard', link: ROUTER.AGENTS_DASHBOARD },
-  { title: 'Battles Management', link: ROUTER.BATTLES_MANAGEMENT },
-];
-
 import { Icons } from '@/assets/icons';
+import { Brain, Cake, User, User2, Package } from 'lucide-react';
 
 export const sidebars: {
   iconActive?: React.ReactNode;
-  icon: React.ReactNode;
-  title: string;
-  link: string;
+  icon?: React.ReactNode;
+  title?: string;
+  link?: string;
   line?: boolean;
 }[] = [
   {
@@ -20,41 +18,48 @@ export const sidebars: {
     link: ROUTER.HOME,
     iconActive: null,
   },
-
-  // {
-  //   line: true,
-  // },
   {
-    icon: <Icons.home />,
+    icon: <User2 />,
+    title: 'Admin Management',
+    link: ROUTER.USER_MANAGEMENT,
+    iconActive: null,
+  },
+  {
+    icon: <User />,
+    title: 'User Management',
+    link: ROUTER.USER_MANAGEMENT,
+    iconActive: null,
+  },
+
+  {
+    line: true,
+  } as any,
+  {
+    icon: <Cake />,
     title: 'Categories',
     link: ROUTER.CATEGORY_MANAGEMENT,
   },
   {
-    icon: <Icons.home />,
+    icon: <Brain />,
     title: 'Brand Management',
     link: ROUTER.BRAND_MANAGEMENT,
   },
   {
-    icon: <Icons.home />,
+    icon: <Package />,
     title: 'Product Management',
     link: ROUTER.PRODUCT_MANAGEMENT,
   },
-  // {
-  //   icon: <Icons.mbPage />,
-  //   title: 'M & B',
-  //   link: ROUTE['CRON-JOB'],
-  //   access: [IPermissions['SUPER-ADMIN_ADMIN'], IPermissions['GLOBAL-SUPER-ADMIN_ADMIN']],
-  // },
-  // {
-  //   icon: <Icons.account />,
-  //   title: 'Accounts',
-  //   link: ROUTE.ADMIN_USER_MANAGEMENT,
-  //   access: [IPermissions['SUPER-ADMIN_ADMIN'], IPermissions['GLOBAL-SUPER-ADMIN_ADMIN']],
-  // },
-  // {
-  //   icon: <Icons.developerZone />,
-  //   title: 'Developer Zone',
-  //   link: ROUTE.ADMIN_DEVELOPER_ZONE,
-  //   access: [IPermissions['GLOBAL-SUPER-ADMIN_ADMIN']],
-  // },
+  {
+    line: true,
+  } as any,
+  {
+    icon: <Package />,
+    title: 'Voucher Management',
+    link: ROUTER.PRODUCT_MANAGEMENT,
+  },
+  {
+    icon: <Package />,
+    title: 'Order Management',
+    link: ROUTER.PRODUCT_MANAGEMENT,
+  },
 ];

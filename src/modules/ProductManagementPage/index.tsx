@@ -1,11 +1,15 @@
 'use client';
 import { useProductsQuery } from '@/api/product/queries';
 import type { IProductQuery } from '@/api/product/types';
+import { Icons } from '@/assets/icons';
 import SearchTable from '@/components/SearchTable';
 import H1 from '@/components/text/H1';
+import { Button } from '@/components/ui/button';
 import TableBase, { TablePagination } from '@/components/ui/table';
 import { HStack } from '@/components/utilities';
 import Container from '@/components/wrapper/Container';
+import { ROUTER } from '@/libs/router';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { COLUMNS } from './libs/consts';
 
@@ -18,6 +22,7 @@ const ProductManagementPage = () => {
 
   const { data, isFetching, refetch } = useProductsQuery({
     variables: paramsQuery,
+    refetchOnMount: true,
   });
 
   return (
@@ -51,6 +56,12 @@ const ProductManagementPage = () => {
         />
 
         {/* <FormCreateCategory refetch={refetch} /> */}
+        <Link href={ROUTER.CREATE_PRODUCT}>
+          <Button>
+            <Icons.plus />
+            Create
+          </Button>
+        </Link>
       </HStack>
 
       <div className="my-6 min-h-[400px]">

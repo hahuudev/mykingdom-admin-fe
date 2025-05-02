@@ -37,7 +37,7 @@ export const updateBrand = async ({
 }): Promise<IBrand> => {
   const { data } = await client({
     url: `/api/admin/brands/${id}`,
-    method: 'PUT',
+    method: 'PATCH',
     data: formData,
   });
   return data?.data;

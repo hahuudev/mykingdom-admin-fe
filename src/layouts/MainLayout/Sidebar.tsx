@@ -75,13 +75,13 @@ const Sidebar = () => {
 
           <VStack className="mb-6" spacing={8}>
             {sidebars.map((sidebar, index) => {
-              // if (sidebar.line) {
-              //   return (
-              //     <div className="px-6" key={index}>
-              //       <Separator className="border-primary-400 w-[content] rounded-sm border-t-[2px]" />
-              //     </div>
-              //   );
-              // }
+              if (sidebar.line) {
+                return (
+                  <div className="px-6" key={index}>
+                    <Separator className="w-[content] rounded-sm border-primary-400 border-t" />
+                  </div>
+                );
+              }
 
               // const isShow = !sidebar.access || sidebar.access.includes(user?.permissions);
               // if (!isShow) return null;

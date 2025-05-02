@@ -1,6 +1,6 @@
-import type { ProductSchema } from '@/modules/ProductManagementPage/libs/validators';
+import type { ProductSchema } from '@/modules/CreateProductPage/libs/validators';
 import client from '../axios';
-import type { IProductResponse, IProduct, IProductQuery } from './types';
+import type { IProduct, IProductQuery, IProductResponse } from './types';
 
 export const getProducts = async (params: Partial<IProductQuery>): Promise<IProductResponse> => {
   const { data } = await client({

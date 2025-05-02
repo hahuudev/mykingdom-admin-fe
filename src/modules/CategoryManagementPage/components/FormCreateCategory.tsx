@@ -37,6 +37,7 @@ const FormCreateCategory = ({ refetch }: Props) => {
       onSuccess: () => {
         toast.success('Create new category successfully!');
         setIsOpenModal(false);
+        form.reset();
         refetch();
       },
       onError: onMutateError,

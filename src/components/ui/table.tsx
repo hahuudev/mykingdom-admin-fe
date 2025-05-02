@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { SkeletonWrapper } from './skeleton-wrapper';
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
+  <div className="relative w-full overflow-auto ">
     <table ref={ref} className={cn('w-full caption-bottom text-sm', className)} {...props} />
   </div>
 ));
@@ -169,72 +169,74 @@ type TableBaseProps = {
 
 const TableBase = ({ columns, dataSource, loading }: TableBaseProps) => {
   return (
-    <Table className="rounded border">
-      <TableHeader>
-        <TableRow className="bg-table-header-bg">
-          {columns?.map((column, index) => (
-            <TableHead
-              key={column.key}
-              className={cn(
-                'relative pl-4 font-semibold text-grey-600',
-                {
-                  'text-left': !column.align || column.align === 'left',
-                  'text-center': column.align === 'center',
-                  'text-right': column.align === 'right',
-                },
-                column.className
-              )}
-            >
-              <div className={''}>{column.title}</div>
-              {index > 0 && <div className="absolute top-2 bottom-2 left-0 border"></div>}
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
+    <div className="grid">
+      <Table className="rounded border">
+        <TableHeader>
+          <TableRow className="bg-table-header-bg">
+            {columns?.map((column, index) => (
+              <TableHead
+                key={column.key}
+                className={cn(
+                  'relative pl-4 font-semibold text-grey-600',
+                  {
+                    'text-left': !column.align || column.align === 'left',
+                    'text-center': column.align === 'center',
+                    'text-right': column.align === 'right',
+                  },
+                  column.className
+                )}
+              >
+                <div className={''}>{column.title}</div>
+                {index > 0 && <div className="absolute top-2 bottom-2 left-0 border"></div>}
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
 
-      <TableBody>
-        <Show when={!loading && dataSource && dataSource?.length > 0}>
-          {dataSource?.map((row: any, index: number) => (
-            <TableRow key={index}>
-              {columns.map((column) => (
-                <TableCell key={column.key}>
-                  {column.getCell ? (
-                    column.getCell({ value: row[column.key], row })
-                  ) : (
-                    <div
-                      className={cn('line-clamp-3 min-h-4 w-full px-2 py-1 font-medium text-[13px] text-grey-600', {
-                        'justify-start': !column.align || column.align === 'left',
-                        'justify-center': column.align === 'center',
-                        'justify-end': column.align === 'right',
-                      })}
-                      style={column.color ? { color: column.color } : undefined}
-                    >
-                      {row[column.key]}
-                    </div>
-                  )}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </Show>
+        <TableBody>
+          <Show when={!loading && dataSource && dataSource?.length > 0}>
+            {dataSource?.map((row: any, index: number) => (
+              <TableRow key={index}>
+                {columns.map((column) => (
+                  <TableCell key={column.key}>
+                    {column.getCell ? (
+                      column.getCell({ value: row[column.key], row })
+                    ) : (
+                      <div
+                        className={cn('line-clamp-3 min-h-4 w-full px-2 py-1 font-medium text-[13px] text-grey-600', {
+                          'justify-start': !column.align || column.align === 'left',
+                          'justify-center': column.align === 'center',
+                          'justify-end': column.align === 'right',
+                        })}
+                        style={column.color ? { color: column.color } : undefined}
+                      >
+                        {row[column.key]}
+                      </div>
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </Show>
 
-        {/* Loading */}
-        <Show when={loading}>
-          {[1, 2, 3].map((item) => (
-            <TableRow key={item}>
-              {columns?.map((column) => (
-                <TableCell key={column.key} className="py-1.5">
-                  <SkeletonWrapper loading className="h-5 w-full" />
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </Show>
-        <Show when={!loading && (!dataSource || dataSource?.length === 0)}>
-          <NodataTable col={columns?.length} />
-        </Show>
-      </TableBody>
-    </Table>
+          {/* Loading */}
+          <Show when={loading}>
+            {[1, 2, 3].map((item) => (
+              <TableRow key={item}>
+                {columns?.map((column) => (
+                  <TableCell key={column.key} className="py-1.5">
+                    <SkeletonWrapper loading className="h-5 w-full" />
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </Show>
+          <Show when={!loading && (!dataSource || dataSource?.length === 0)}>
+            <NodataTable col={columns?.length} />
+          </Show>
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

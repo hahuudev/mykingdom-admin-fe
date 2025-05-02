@@ -8,11 +8,18 @@ export const COLUMNS = (refetch: any): ITableColumn[] => [
     title: 'Name',
     key: 'name',
     align: 'left',
+    className: 'w-[250px]',
   },
   {
     title: 'Description',
     key: 'description',
     align: 'left',
+    getCell: ({ row }) => (
+      <div
+        className="line-clamp-3 min-h-4 w-full px-2 py-1 font-medium text-[13px] text-grey-600"
+        dangerouslySetInnerHTML={{ __html: row.description }}
+      />
+    ),
   },
   {
     title: 'Image',
@@ -20,9 +27,14 @@ export const COLUMNS = (refetch: any): ITableColumn[] => [
     align: 'center',
     getCell: ({ row }) => (
       <HStack pos="center">
-        <Image src={row?.image || ''} alt="image" width={80} height={80} className="rounded" />
+        <Image src={row?.images?.[0] || '/images/no-image.svg'} alt="image" width={80} height={80} className="rounded" />
       </HStack>
     ),
+  },
+  {
+    title: 'Total Sold Count',
+    key: 'totalSoldCount',
+    align: 'center',
   },
   {
     title: 'Created At',
