@@ -111,14 +111,14 @@ export const AlertDialogComponent: FCC<AlertDialogComponentProps> = ({
   okText,
   cancelText,
   titleClassName,
-  variant = 'alert',
+  variant,
   okClassName,
   okType = 'button',
 }) => {
   return (
     <AlertDialog open={isOpen}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent className="z-[100] max-w-[424px] bg-gray-300 pt-2">
+      <AlertDialogContent className="z-[100] max-w-[424px] bg-white pt-2">
         <HStack pos="apart">
           <AlertDialogTitle
             className={cn(
@@ -151,7 +151,7 @@ export const AlertDialogComponent: FCC<AlertDialogComponentProps> = ({
             <HStack>
               <Button
                 className={cn('w-full', okClassName)}
-                variant={variant === 'success' ? 'default' : 'alert'}
+                variant={variant === 'success' ? 'default' : 'default'}
                 onClick={() => {
                   onOk();
                 }}

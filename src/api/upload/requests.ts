@@ -1,8 +1,9 @@
 import request from '../axios';
+import type { IUploadResponse } from './types';
 
-export const uploadSingleFile = async (formData: FormData, onProgress?: (progress: number) => void): Promise<any> => {
+export const uploadSingleFile = async (formData: FormData, onProgress?: (progress: number) => void): Promise<IUploadResponse> => {
   const { data } = await request({
-    url: '/api/s3/upload-file',
+    url: 'api/upload/single',
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data',

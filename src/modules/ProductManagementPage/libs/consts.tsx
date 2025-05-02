@@ -1,8 +1,6 @@
 import type { ITableColumn } from '@/components/ui/table';
 import { HStack } from '@/components/utilities';
 import Image from 'next/image';
-import ButtonDeleteCategory from '../components/ButtonDeleteCategory';
-import FormEditCategory from '../components/FormEditCategory';
 
 export const COLUMNS = (refetch: any): ITableColumn[] => [
   { title: 'ID', key: '_id', align: 'left', className: 'w-[250px]' },
@@ -38,9 +36,9 @@ export const COLUMNS = (refetch: any): ITableColumn[] => [
     className: 'w-[200px]',
     getCell: ({ row }) => (
       <HStack pos="center" noWrap spacing={20}>
-        <ButtonDeleteCategory {...row} refetch={refetch} />
+        {/* <ButtonDeleteCategory {...row} refetch={refetch} />
 
-        <FormEditCategory _id={row._id} refetch={refetch} />
+        <FormEditCategory _id={row._id} refetch={refetch} /> */}
       </HStack>
     ),
   },

@@ -1,5 +1,6 @@
 'use client';
 
+import { uploadSingleFile } from '@/api/upload/requests';
 import { Icons } from '@/assets/icons';
 import { cn, onMutateError } from '@/libs/common';
 import { useMutation } from '@tanstack/react-query';
@@ -11,7 +12,6 @@ import { toast } from 'react-toastify';
 import { Button, type ButtonProps } from '../ui/button';
 import { FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Show, VStack } from '../utilities';
-import { uploadSingleFile } from '@/api/upload/requests';
 
 interface Props<T extends FieldValues = FieldValues> extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'accept' | 'onChange'> {
   control: Control<T>;
@@ -133,7 +133,7 @@ const UploadButtonField = <T extends FieldValues>({
                   PNG or JPEG (max. {props?.maxSize ?? 25} MB)
                 </div>
 
-                <Button variant={'outline'} className="mt-3">
+                <Button variant={'outline'} className="mt-3" size="xs">
                   Select Files
                 </Button>
 
@@ -144,27 +144,24 @@ const UploadButtonField = <T extends FieldValues>({
             <FormMessage className="mt-1 text-xs" />
 
             {url && (
-              <div
-                className={cn('relative mt-2 h-[400px] overflow-hidden rounded md:aspect-[144/40] md:h-auto', previewClassNames?.wrapper)}
-              >
-                <Image
-                  className={cn('object-cover md:aspect-[144/40]', previewClassNames?.image)}
-                  alt=""
-                  src={url ?? ''}
-                  fill
-                  sizes="100vh"
-                />
-                <Button
-                  variant={'outline'}
-                  className="absolute right-2 bottom-2 bg-white"
-                  onClick={() => {
-                    form.setValue('banner_url', '', { shouldDirty: true });
-                    setUrl('');
-                  }}
+              <div className="flex justify-center">
+                <div
+                  className={cn('relative mt-2 h-[400px] overflow-hidden rounded md:aspect-[144/40] md:h-auto', previewClassNames?.wrapper)}
                 >
-                  <Icons.trash className="mr-2 text-red-600" />
-                  Delete
-                </Button>
+                  <Image className={cn('object-cover md:aspect-[144/40]', previewClassNames?.image)} alt="" src={url ?? ''} fill />
+                  <Button
+                    variant={'outline'}
+                    className="absolute right-2 bottom-2 bg-white"
+                    size="xs"
+                    onClick={() => {
+                      form.setValue('banner_url', '', { shouldDirty: true });
+                      setUrl('');
+                    }}
+                  >
+                    <Icons.trash className="mr-2 text-red-600" />
+                    Delete
+                  </Button>
+                </div>
               </div>
             )}
           </FormItem>

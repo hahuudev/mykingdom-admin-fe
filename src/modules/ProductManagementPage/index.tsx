@@ -1,31 +1,28 @@
 'use client';
-
-import { useCategoriesQuery, useDeleteCategoryMutation } from '@/api/category/queries';
-import type { ICategoryQuery } from '@/api/category/types';
+import { useProductsQuery } from '@/api/product/queries';
+import type { IProductQuery } from '@/api/product/types';
 import SearchTable from '@/components/SearchTable';
 import H1 from '@/components/text/H1';
 import TableBase, { TablePagination } from '@/components/ui/table';
 import { HStack } from '@/components/utilities';
 import Container from '@/components/wrapper/Container';
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import FormCreateCategory from './components/FormCreateCategory';
 import { COLUMNS } from './libs/consts';
 
 const defaultQuery = {
   page: 1,
   limit: 10,
 };
-const CategoryManagementPage = () => {
-  const [paramsQuery, setParamsQuery] = useState<Partial<ICategoryQuery>>(defaultQuery);
+const ProductManagementPage = () => {
+  const [paramsQuery, setParamsQuery] = useState<Partial<IProductQuery>>(defaultQuery);
 
-  const { data, isFetching, refetch } = useCategoriesQuery({
+  const { data, isFetching, refetch } = useProductsQuery({
     variables: paramsQuery,
   });
 
   return (
     <Container>
-      <H1 className="mb-8 font-orbitron">Category management</H1>
+      <H1 className="mb-8 font-orbitron">Product management</H1>
       <HStack pos="apart">
         <SearchTable
           listFilter={[]}
@@ -53,7 +50,7 @@ const CategoryManagementPage = () => {
           }}
         />
 
-        <FormCreateCategory refetch={refetch} />
+        {/* <FormCreateCategory refetch={refetch} /> */}
       </HStack>
 
       <div className="my-6 min-h-[400px]">
@@ -74,4 +71,4 @@ const CategoryManagementPage = () => {
   );
 };
 
-export default CategoryManagementPage;
+export default ProductManagementPage;

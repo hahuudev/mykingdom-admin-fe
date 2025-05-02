@@ -12,30 +12,32 @@ import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { type CategorySchema, categorySchema } from '../libs/validators';
-import FormCategory from './FormCategory';
+import { type BrandSchema, brandSchema } from '../libs/validators';
+import FormCategory from './FormBrand';
+import { createBrand } from '@/api/brand/requests';
 
 type Props = {
   refetch: any;
 };
-const FormCreateCategory = ({ refetch }: Props) => {
+const FormCreateBrand = ({ refetch }: Props) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-  const { mutate, isLoading } = useMutation(createCategory);
+  const { mutate, isLoading } = useMutation(createBrand);
 
-  const form = useForm<CategorySchema>({
+  const form = useForm<BrandSchema>({
     defaultValues: {
-      image: '',
+      website: '',
+      logo: '',
       name: '',
       description: '',
     },
-    resolver: zodResolver(categorySchema),
+    resolver: zodResolver(brandSchema),
   });
 
-  const handleSubmit: SubmitHandler<CategorySchema> = async (formData) => {
+  const handleSubmit: SubmitHandler<BrandSchema> = async (formData) => {
     mutate(formData, {
       onSuccess: () => {
-        toast.success('Create new category successfully!');
+        toast.success('Create new brand successfully!');
         setIsOpenModal(false);
         refetch();
       },
@@ -53,7 +55,7 @@ const FormCreateCategory = ({ refetch }: Props) => {
       </DialogTrigger>
 
       <DialogContent className="max-h-[92vh] max-w-[520px] overflow-y-auto rounded-t-md border-none p-0 shadow-none">
-        <div className="px-6 py-2 lg:px-10">
+        <div className="px-6 py-2">
           <HStack pos="apart" noWrap align="center">
             <HStack className="mt-3 h-12 w-12 rounded-full border bg-[#4D9E2A26] " pos="center">
               <Icons.user className="w-5 stroke-primary-400" />
@@ -64,7 +66,7 @@ const FormCreateCategory = ({ refetch }: Props) => {
             </span>
           </HStack>
 
-          <H3 className="mt-4">Create New Category</H3>
+          <H3 className="mt-4">Create New Brand</H3>
 
           <div className="my-6">
             <FormWrapper form={form} onSubmit={handleSubmit}>
@@ -86,4 +88,4 @@ const FormCreateCategory = ({ refetch }: Props) => {
   );
 };
 
-export default FormCreateCategory;
+export default FormCreateBrand;

@@ -7,9 +7,9 @@ export const useCategoriesQuery = createQuery<ICategoryResponse, Partial<ICatego
   queryKey: ['admin/categories'],
   fetcher: (params) => getCategories(params),
 });
-export const useCategoryByIdQuery = createQuery<ICategory, { id: string }>({
+export const useCategoryByIdQuery = createQuery<ICategory, string>({
   queryKey: ['category'],
-  fetcher: ({ id }) => getCategoryById(id),
+  fetcher: (id) => getCategoryById(id),
 });
 // Mutations
 export const useCreateCategoryMutation = createMutation<ICategory, CategorySchema>({ mutationFn: (data) => createCategory(data) });

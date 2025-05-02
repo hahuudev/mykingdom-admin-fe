@@ -1,31 +1,31 @@
 'use client';
 
-import { useCategoriesQuery, useDeleteCategoryMutation } from '@/api/category/queries';
-import type { ICategoryQuery } from '@/api/category/types';
+import type { IBrandQuery } from '@/api/brand/types';
+import { useCategoriesQuery } from '@/api/category/queries';
 import SearchTable from '@/components/SearchTable';
 import H1 from '@/components/text/H1';
 import TableBase, { TablePagination } from '@/components/ui/table';
 import { HStack } from '@/components/utilities';
 import Container from '@/components/wrapper/Container';
-import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-import FormCreateCategory from './components/FormCreateCategory';
+import { useState } from 'react';
+import FormCreateCategory from './components/FormCreateBrand';
 import { COLUMNS } from './libs/consts';
+import { useBrands } from '@/api/brand/queries';
 
 const defaultQuery = {
   page: 1,
   limit: 10,
 };
-const CategoryManagementPage = () => {
-  const [paramsQuery, setParamsQuery] = useState<Partial<ICategoryQuery>>(defaultQuery);
+const BrandManagementPage = () => {
+  const [paramsQuery, setParamsQuery] = useState<Partial<IBrandQuery>>(defaultQuery);
 
-  const { data, isFetching, refetch } = useCategoriesQuery({
+  const { data, isFetching, refetch } = useBrands({
     variables: paramsQuery,
   });
 
   return (
     <Container>
-      <H1 className="mb-8 font-orbitron">Category management</H1>
+      <H1 className="mb-8 font-orbitron">Brand management</H1>
       <HStack pos="apart">
         <SearchTable
           listFilter={[]}
@@ -74,4 +74,4 @@ const CategoryManagementPage = () => {
   );
 };
 
-export default CategoryManagementPage;
+export default BrandManagementPage;

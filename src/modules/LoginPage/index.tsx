@@ -53,11 +53,10 @@ const LoginPage = () => {
         <div className="h-full w-full" style={{ backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)' }}></div>
       </div>
 
+      <HStack className="mb-3" pos="center">
+        <Image width={400} height={232} src="/images/logo.png" alt="battle logo" className="h-auto w-[12rem]" />
+      </HStack>
       <VStack className="w-full max-w-[450px] rounded-lg border bg-[#FFFFFF26] px-6 py-6 shadow-card-2 md:px-8" spacing={16}>
-        <HStack className="mb-3" pos="center">
-          <Image width={400} height={232} src="/images/logo.png" alt="battle logo" className="h-auto w-[11rem]" />
-        </HStack>
-
         <h1 className="mb-5 text-center font-semibold text-2xl md:text-3xl">Admin Login</h1>
 
         <FormWrapper form={form} onSubmit={handleSubmit}>

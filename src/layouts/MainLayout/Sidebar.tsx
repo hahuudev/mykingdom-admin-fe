@@ -88,10 +88,10 @@ const Sidebar = () => {
               return (
                 <Link href={sidebar.link || ''} key={index}>
                   <HStack
-                    spacing={20}
+                    spacing={16}
                     pos={!openSideBar ? 'center' : null}
                     noWrap
-                    className={cn('px-8 py-4 font-medium text-white hover:bg-primary-300', {
+                    className={cn('px-7 py-4 font-medium text-white hover:bg-primary-300', {
                       'bg-primary-500': pathname === sidebar.link,
                     })}
                   >

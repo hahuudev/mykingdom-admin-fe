@@ -25,6 +25,10 @@ const config: Config = {
         17: '68px',
         18: '72px',
       },
+      boxShadow: {
+        active: '0 0 80px 0 rgba(0, 0, 0, 0.10)',
+        'card-2': '0px 4px 10px 0px rgba(0, 0, 0, 0.12)',
+      },
       colors: {
         white: '#FFFFFF',
         success: {
