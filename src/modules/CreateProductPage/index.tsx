@@ -20,7 +20,7 @@ import { TABS } from './libs/consts';
 import { type ProductSchema, productSchema } from './libs/validators';
 
 const CreateProductPage = () => {
-  const [tab, setTab] = useState(TABS[2].value);
+  const [tab, setTab] = useState(TABS[0].value);
   const router = useRouter();
   const form = useForm<ProductSchema>({
     defaultValues: {

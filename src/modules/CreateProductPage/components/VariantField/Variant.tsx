@@ -82,11 +82,28 @@ const Variant = ({ value, onConfirm }: Props) => {
     form.setValue('variants', variants);
   }, [JSON.stringify(form.watch('attributes'))]);
 
-  // useEffect(() => {
-  //   if (value) {
-  //     form.reset(value);
-  //   }
-  // }, [value]);
+  useEffect(() => {
+    if (value) {
+      const attributeMap = new Map();
+
+      ((value as any) || []).forEach((variant: any) => {
+        for (const [key, value] of Object.entries(variant.attributes)) {
+          if (!attributeMap.has(key)) {
+            attributeMap.set(key, new Set());
+          }
+          attributeMap.get(key).add(value);
+        }
+      });
+
+      const result = Array.from(attributeMap.entries()).map(([name, values]) => ({
+        name,
+        values: Array.from(values),
+      }));
+      if (result?.length > 0) {
+        form.reset({ attributes: result as any, variants: value as any });
+      }
+    }
+  }, [value]);
 
   return (
     <FormWrapper form={form} onSubmit={handleSubmit}>

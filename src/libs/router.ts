@@ -7,4 +7,6 @@ export const ROUTER = {
   CATEGORY_MANAGEMENT: '/categories',
   BRAND_MANAGEMENT: '/brands',
   CREATE_PRODUCT: '/products/create',
+  VOUCHER_MANAGEMENT: '/vouchers',
+  ORDER_MANAGEMENT: '/orders',
 } as const;

@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import type { ButtonProps } from '../ui/button';
 import { FormField, FormItem, FormMessage } from '../ui/form';
+import { uploadSingleFile } from '@/api/upload/requests';
 
 interface Props<T extends FieldValues = FieldValues> extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'accept'> {
   control: Control<T>;
@@ -37,7 +38,7 @@ const UploadAvatarField = <T extends FieldValues>({
 }: Props<T>) => {
   const ref = useRef<React.ElementRef<'input'>>(null);
 
-  const { mutate, isLoading } = useMutation(uploadAvatar);
+  const { mutate, isLoading } = useMutation(uploadSingleFile);
 
   const handleChangeFile = (e: File, onChange: any) => {
     const formData = new FormData();

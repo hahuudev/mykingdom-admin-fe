@@ -21,7 +21,7 @@ export const sidebars: {
   {
     icon: <User2 />,
     title: 'Admin Management',
-    link: ROUTER.USER_MANAGEMENT,
+    link: ROUTER.ADMIN_MANAGEMENT,
     iconActive: null,
   },
   {
@@ -55,11 +55,11 @@ export const sidebars: {
   {
     icon: <Package />,
     title: 'Voucher Management',
-    link: ROUTER.PRODUCT_MANAGEMENT,
+    link: ROUTER.VOUCHER_MANAGEMENT,
   },
   {
     icon: <Package />,
     title: 'Order Management',
-    link: ROUTER.PRODUCT_MANAGEMENT,
+    link: ROUTER.ORDER_MANAGEMENT,
   },
 ];
