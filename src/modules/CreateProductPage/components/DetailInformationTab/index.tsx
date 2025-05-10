@@ -5,7 +5,7 @@ import { VStack } from '@/components/utilities';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import type { ProductSchema } from '../../libs/validators';
-import VariantField from '../VariantField';
+import VariantField from '../../../../components/form/VariantField';
 
 const DetailInformationTab = () => {
   const form = useFormContext<ProductSchema>();

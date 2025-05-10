@@ -1,6 +1,7 @@
 import { useBrands } from '@/api/brand/queries';
 import { useCategoriesQuery } from '@/api/category/queries';
 import { SwitchField } from '@/components/form';
+import { KeyValueDynamicField } from '@/components/form/KeyValueDynamicField';
 import { SelectCustomField } from '@/components/form/SelectCustomField';
 import { SelectMultiCustomField } from '@/components/form/SelectMultiCustomField';
 import H3 from '@/components/text/H3';
@@ -29,6 +30,7 @@ const OtherInformationTab = () => {
       toast.error(`The field '${firstKey}': ${firstError.message}` || 'Please fill in all required fields.');
     }
   };
+
   return (
     <div>
       <H3>Other Information</H3>
@@ -64,6 +66,8 @@ const OtherInformationTab = () => {
           <SwitchField control={form.control} name="isFeatured" label="Product Highlight" />
           <SwitchField control={form.control} name="isOnSale" label="On Sale" />
         </HStack>
+
+        <KeyValueDynamicField control={form.control} name="specifications" label="Specifications" />
       </VStack>
 
       <Separator className="my-10" />

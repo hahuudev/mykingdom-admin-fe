@@ -63,7 +63,7 @@ const CreateProductPage = () => {
   return (
     <Container>
       <div className="flex">
-        <div className="sticky top-10 h-fit w-[280px] rounded bg-primary-500 px-4 py-3">
+        <div className="sticky top-10 h-fit w-[280px] rounded bg-primary-500 px-4 pt-3 pb-20">
           <H4 className="text-white">Progress</H4>
 
           <VStack className="mt-4">

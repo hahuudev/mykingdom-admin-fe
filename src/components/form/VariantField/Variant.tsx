@@ -15,6 +15,7 @@ import {
 } from '@/modules/CreateProductPage/libs/validators';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
+import { isEqual } from 'lodash';
 import { Save, Trash } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -53,18 +54,27 @@ const Variant = ({ value, onConfirm }: Props) => {
   useEffect(() => {
     function generateVariants(attributes: AttributeSchema[]) {
       const result: ProductVariantSchema[] = [];
+      const defaultVariants = form.getValues('variants') || [];
 
       function helper(index: number, currentAttributes: any) {
         if (index === attributes.length) {
-          result.push({
-            attributes: currentAttributes as any,
-            price: '0',
-            quantity: '0',
-            sku: String(Date.now() + index),
-            images: [],
-            name: '',
-            salePrice: 0,
-          });
+          // Kiểm tra xem variant này đã tồn tại chưa
+          const existing = defaultVariants.find((variant) => isEqual(variant.attributes, currentAttributes));
+
+          if (existing) {
+            result.push(existing);
+          } else {
+            result.push({
+              attributes: currentAttributes as any,
+              price: '0',
+              quantity: '0',
+              sku: String(Date.now()) + String(Math.floor(Math.random() * 10)),
+              images: [],
+              name: '',
+              salePrice: 0,
+            });
+          }
+
           return;
         }
 
@@ -77,7 +87,6 @@ const Variant = ({ value, onConfirm }: Props) => {
       helper(0, {} as any);
       return result;
     }
-
     const variants = generateVariants(form.watch('attributes') || []);
     form.setValue('variants', variants);
   }, [JSON.stringify(form.watch('attributes'))]);
@@ -104,6 +113,8 @@ const Variant = ({ value, onConfirm }: Props) => {
       }
     }
   }, [value]);
+
+  console.log(value);
 
   return (
     <FormWrapper form={form} onSubmit={handleSubmit}>
@@ -160,7 +171,7 @@ const Variant = ({ value, onConfirm }: Props) => {
             >
               {keys.map((key, index) => (
                 <div key={index} className="flex items-center justify-center text-center text-sm">
-                  {variant.attributes[key]}
+                  {variant.attributes[key] || 'N/A'}
                 </div>
               ))}
               <div>

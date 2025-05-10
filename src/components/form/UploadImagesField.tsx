@@ -182,7 +182,7 @@ const UploadImagesField = <T extends FieldValues>({
                     or drag and drop
                   </div>
 
-                  <div className="text-gray-800 text-sm">DOCX, PDF, CSV or XLSX (max. 25 MB)</div>
+                  <div className="text-gray-800 text-sm"> (max. 25 MB)</div>
                 </VStack>
               </FileUploader>
               <FormControl></FormControl>
