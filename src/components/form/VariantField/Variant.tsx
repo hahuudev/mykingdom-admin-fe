@@ -69,9 +69,6 @@ const Variant = ({ value, onConfirm }: Props) => {
               price: '0',
               quantity: '0',
               sku: String(Date.now()) + String(Math.floor(Math.random() * 10)),
-              images: [],
-              name: '',
-              salePrice: 0,
             });
           }
 

@@ -30,6 +30,7 @@ const CreateProductPage = () => {
       images: [],
       categories: [],
       primaryCategoryId: '',
+      originalPrice: '0',
       brandId: '',
       variants: [],
       tags: [],
@@ -39,7 +40,6 @@ const CreateProductPage = () => {
       isOnSale: false,
       isNewArrival: false,
       isBestSeller: false,
-      viewCount: 0,
     },
     resolver: zodResolver(productSchema),
   });
@@ -49,7 +49,7 @@ const CreateProductPage = () => {
   const handleSubmit = (formData: ProductSchema) => {
     const variants = formData.variants.map((x) => ({ ...x, price: +x.price, quantity: +x.quantity }));
     mutate(
-      { ...formData, variants: variants as any },
+      { ...formData, originalPrice: +formData.originalPrice as any, variants: variants as any },
       {
         onSuccess: () => {
           form.reset();

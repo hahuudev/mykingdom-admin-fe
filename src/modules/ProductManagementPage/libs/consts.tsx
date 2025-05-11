@@ -1,6 +1,10 @@
+import { Button } from '@/components/ui/button';
 import type { ITableColumn } from '@/components/ui/table';
 import { HStack } from '@/components/utilities';
+import { cn } from '@/libs/common';
 import Image from 'next/image';
+import Link from 'next/link';
+import ButtonDeleteProduct from '../components/ButtonDeleteProduct';
 
 export const COLUMNS = (refetch: any): ITableColumn[] => [
   { title: 'ID', key: '_id', align: 'left', className: 'w-[250px]' },
@@ -37,6 +41,11 @@ export const COLUMNS = (refetch: any): ITableColumn[] => [
     align: 'center',
   },
   {
+    title: 'View Count',
+    key: 'viewCount',
+    align: 'center',
+  },
+  {
     title: 'Created At',
     key: 'createdAt',
     align: 'left',
@@ -48,9 +57,18 @@ export const COLUMNS = (refetch: any): ITableColumn[] => [
     className: 'w-[200px]',
     getCell: ({ row }) => (
       <HStack pos="center" noWrap spacing={20}>
-        {/* <ButtonDeleteCategory {...row} refetch={refetch} />
-
-        <FormEditCategory _id={row._id} refetch={refetch} /> */}
+        <ButtonDeleteProduct {...row} refetch={refetch} />
+        <Link href="">
+          <Button
+            className={cn('hover:opacity-80', {
+              'cursor-not-allowed opacity-60 hover:opacity-60': false,
+            })}
+            size="xs"
+            type="button"
+          >
+            Detail
+          </Button>
+        </Link>
       </HStack>
     ),
   },

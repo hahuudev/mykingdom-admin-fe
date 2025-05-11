@@ -4,7 +4,6 @@ import { z } from 'zod';
 // Product variant schema
 export const productVariantSchema = z.object({
   sku: z.string().optional(),
-  name: z.string().optional(),
   price: z.string().refine((val) => !isNaN(+val) && +val > 0, {
     message: 'Price must be a positive number',
   }),
@@ -14,7 +13,6 @@ export const productVariantSchema = z.object({
   }),
   soldCount: z.number().int().min(0).optional(),
   attributes: z.record(z.string()),
-  images: z.array(z.string()).optional(),
 });
 
 export type ProductVariantSchema = z.infer<typeof productVariantSchema>;
@@ -28,6 +26,9 @@ export const productSchema = z.object({
   categories: z.array(z.string()).optional(),
   primaryCategoryId: z.string().nullable(),
   brandId: z.string().nullable(),
+  originalPrice: z.string().refine((val) => !isNaN(+val) && +val > 0, {
+    message: 'Price must be a positive number',
+  }),
   variants: z.array(productVariantSchema).min(1, { message: 'At least one variant is required' }),
   tags: z.array(z.string()).optional(),
   specifications: z.record(z.string()).optional(),
@@ -36,10 +37,6 @@ export const productSchema = z.object({
   isOnSale: z.boolean().default(false),
   isNewArrival: z.boolean().default(false),
   isBestSeller: z.boolean().default(false),
-  viewCount: z.number().int().min(0).optional(),
-  totalSoldCount: z.number().int().min(0).optional(),
-  averageRating: z.number().min(0).max(5).optional(),
-  reviewCount: z.number().int().min(0).optional(),
 });
 
 export type ProductSchema = z.infer<typeof productSchema>;
