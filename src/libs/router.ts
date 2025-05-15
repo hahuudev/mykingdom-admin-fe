@@ -9,4 +9,5 @@ export const ROUTER = {
   CREATE_PRODUCT: '/products/create',
   VOUCHER_MANAGEMENT: '/vouchers',
   ORDER_MANAGEMENT: '/orders',
+  BANNERS_MANAGEMENT: '/banners',
 } as const;

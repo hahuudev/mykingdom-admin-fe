@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent } from '@/components/ui/popover';
 import type { ITableColumn } from '@/components/ui/table';
 import { HStack } from '@/components/utilities';
-import { cn } from '@/libs/common';
+import { PopoverTrigger } from '@radix-ui/react-popover';
+import { DotSquare } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import ButtonDeleteProduct from '../components/ButtonDeleteProduct';
 
 export const COLUMNS = (refetch: any): ITableColumn[] => [
@@ -58,17 +58,18 @@ export const COLUMNS = (refetch: any): ITableColumn[] => [
     getCell: ({ row }) => (
       <HStack pos="center" noWrap spacing={20}>
         <ButtonDeleteProduct {...row} refetch={refetch} />
-        <Link href="">
-          <Button
-            className={cn('hover:opacity-80', {
-              'cursor-not-allowed opacity-60 hover:opacity-60': false,
-            })}
-            size="xs"
-            type="button"
-          >
-            Detail
-          </Button>
-        </Link>
+        <Popover>
+          <PopoverTrigger asChild>
+            <DotSquare />
+          </PopoverTrigger>
+
+          <PopoverContent>
+            <div className="flex flex-col gap-2">
+              <button>Detail</button>
+              <button>Edit</button>
+            </div>
+          </PopoverContent>
+        </Popover>
       </HStack>
     ),
   },
